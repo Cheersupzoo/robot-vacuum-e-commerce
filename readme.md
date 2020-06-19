@@ -1,5 +1,29 @@
 # Robot Vacuum E-Commerce
 
+### Install
+
+#### Clone this repo
+
+```
+git clone https://github.com/Cheersupzoo/robot-vacuum-e-commerce.git
+```
+
+#### Install dependencies
+
+```
+npm install
+```
+
+### Usage
+
+#### Run the all the service
+
+```
+npm start
+```
+
+# Robot Vacuum E-Commerce API
+
 ## 1. Authentication API
 
 ### 1.1 Login
