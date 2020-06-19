@@ -33,6 +33,7 @@ npm start
 - Check validity of request
 - Better naming of API endpoint
 - Add Automate Testing
+- Add more explanation of each API
 
 # Robot Vacuum E-Commerce API
 
