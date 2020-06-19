@@ -1,5 +1,7 @@
 # Robot Vacuum E-Commerce
 
+An e-commerce services example using microservice design. There are totally 4 services: Authentication service, User manager service, Product service, Order Management services.
+
 ### Install
 
 #### Clone this repo
@@ -11,6 +13,7 @@ git clone https://github.com/Cheersupzoo/robot-vacuum-e-commerce.git
 #### Install dependencies
 
 ```
+cd .\robot-vacuum-e-commerce\
 npm install
 ```
 
@@ -21,6 +24,15 @@ npm install
 ```
 npm start
 ```
+
+## todo
+- salt password
+- Add user created date field
+- Add Ordered date field
+- Add services discovery service
+- Check validity of request
+- Better naming of API endpoint
+- Add Automate Testing
 
 # Robot Vacuum E-Commerce API
 
