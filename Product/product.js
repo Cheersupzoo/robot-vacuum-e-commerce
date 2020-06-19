@@ -42,7 +42,7 @@ app.get('/product', (req, res) => {
     }
 
     res.status(202).send(response);
-    console.log(`[UserManager] get product list`.green);
+    console.log(`[Product] get product list`.green);
 
 });
 
@@ -64,14 +64,14 @@ app.get('/product/**', (req, res) => {
         }
 
         res.status(202).send(response);
-        console.log(`[UserManager] get user profile`.green);
+        console.log(`[Product] get product detail`.green);
     } else {
         const response = {
             status: 'failure',
             error: 'User not exist!'
         }
         res.status(406).send(response)
-        console.log(`[UserManager] user not found`.red);
+        console.log(`[Product] product not found`.red);
     }
 
 });
@@ -79,5 +79,5 @@ app.get('/product/**', (req, res) => {
 app.use('/img', express.static(path.join(__dirname,'img')));
 
 
-console.log(`User Manager service listening on port ${port}`);
+console.log(`Product service listening on port ${port}`);
 app.listen(port);
