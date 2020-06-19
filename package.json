@@ -4,7 +4,12 @@
   "description": "Services for Robot Vacuum E-Commerce",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "authentication": "node ./Authentication/authentication.js",
+    "usermanager": "node ./UserManager/usermanager.js",
+    "product": "node ./Product/product.js",
+    "ordermanager": "node ./OrderManagement/orderManagement.js",
+    "start": "concurrently \"npm run authentication\" \"npm run usermanager\" \"npm run product\" \"npm run ordermanager\""
   },
   "author": "Cheersupzoo",
   "license": "MIT",
@@ -12,6 +17,7 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
+    "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
