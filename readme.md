@@ -79,6 +79,9 @@ Content-Type: application/json
 ```
 
 
+
+
+
 ## 2. User Manager API
 
 ### 2.1 Get User Profile
@@ -225,5 +228,80 @@ Content-Type: application/json
             ]
         }
     ]
+}
+```
+
+## 3. Product API
+
+### 2.1 List All Products
+
+#### URL
+`localhost:8083/product`
+
+#### Header
+```
+GET
+Content-Type: application/json
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | Request's status |
+| `product_list`   | string   | List of all products. |
+
+
+#### Response Example
+```
+{
+    "status": "successful",
+    "product_list": [
+        {
+            "product_id": 1,
+            "name": "Xiaomi Mijia"
+        },
+        {
+            "product_id": 2,
+            "name": "AUTOBOT ROBOT VACUUM CLEANER MINI WHITE"
+        },
+        {
+            "product_id": 3,
+            "name": "Xiaomi Robot 1C Vacuum Mop"
+        }
+    ]
+}
+```
+
+### 2.1 Get Product Detail
+
+#### URL
+`localhost:8083/product/{{product_id}}`
+
+#### Header
+```
+GET
+Content-Type: application/json
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `product_id`        | string   | Request's status |
+
+#### Request Example
+ `localhost:8083/product/3`
+
+
+
+#### Response Example
+```
+{
+    "product_id": 3,
+    "name": "Xiaomi Robot 1C Vacuum Mop",
+    "image_url": "http://localhost:8083/img/5dba546aNaa3b4992.jpg!q70.jpg",
+    "price": 5528,
+    "smartness": "Medium"
 }
 ```
