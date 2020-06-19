@@ -233,7 +233,7 @@ Content-Type: application/json
 
 ## 3. Product API
 
-### 2.1 List All Products
+### 3.1 List All Products
 
 #### URL
 `localhost:8083/product`
@@ -273,7 +273,7 @@ Content-Type: application/json
 }
 ```
 
-### 2.1 Get Product Detail
+### 3.2 Get Product Detail
 
 #### URL
 `localhost:8083/product/{{product_id}}`
@@ -303,5 +303,51 @@ Content-Type: application/json
     "image_url": "http://localhost:8083/img/5dba546aNaa3b4992.jpg!q70.jpg",
     "price": 5528,
     "smartness": "Medium"
+}
+```
+
+## 4. OrderManagement API
+
+### 4.1 Get User's Current Order List
+
+#### URL
+`localhost:8084/order`
+
+#### Header
+```
+GET
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique id. |
+
+#### Body Example
+```
+{
+	"uuid": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | Request's status |
+| `items`   | string   | List of item in current order. |
+
+
+#### Response Example
+```
+{
+    "status": "successful",
+    "items": [
+        {
+            "product_id": 1,
+            "amount": 1
+        }
+    ]
 }
 ```
