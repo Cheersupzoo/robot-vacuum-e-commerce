@@ -288,7 +288,7 @@ Content-Type: application/json
 
 | Parameter       | Type     | Description                                     |
 | -------------   |----------|-------------------------------------------------|
-| `product_id`        | string   | Request's status |
+| `product_id`        | string   | Product ID |
 
 #### Request Example
  `localhost:8083/product/3`
