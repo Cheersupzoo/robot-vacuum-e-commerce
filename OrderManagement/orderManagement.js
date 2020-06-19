@@ -46,6 +46,7 @@ app.post('/order/add', (req, res) => {
         var item = order.items.find(item => item.product_id === req.body['product_id'])
 
         if(item) {
+            // if item already exist add number of amount instead of push new item to list
             item.amount = item.amount + req.body['amount'];
         } else {
             order.items.push({ product_id: req.body['product_id'], amount: req.body['amount'] });
@@ -58,7 +59,7 @@ app.post('/order/add', (req, res) => {
         }
 
         res.status(202).send(response);
-        console.log(`[OrderManagement] get user order`.green);
+        console.log(`[OrderManagement] Add item to order`.green);
     } else {
         const response = {
             status: 'failure',
@@ -71,7 +72,7 @@ app.post('/order/add', (req, res) => {
 });
 
 app.post('/order/remove', (req, res) => {
-    // add item to list of order
+    // remove item from list of order
 
     const user = orders.find(user => user.user_uuid === req.body['uuid']);
 
