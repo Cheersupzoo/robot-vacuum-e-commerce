@@ -170,7 +170,7 @@ Content-Type: application/json
 }
 ```
 
-### 2.2 Get User Purchase History
+### 2.3 Get User Purchase History
 #### URL
 `localhost:8082/history`
 
@@ -228,6 +228,43 @@ Content-Type: application/json
             ]
         }
     ]
+}
+```
+
+### 2.4 Add User profile
+#### URL
+`localhost:8082/adduser`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique id. |
+| `name`      | string   | required   | User's name. |
+
+#### Body Example
+```
+{
+	"uuid": "2d180ae0-ff11-4ea8-803c-94cb3da4d5b1",
+	"name": "Hugo Weavings"
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+
+#### Response Example
+```
+{
+    "status": "successful"
 }
 ```
 
@@ -349,5 +386,121 @@ Content-Type: application/json
             "amount": 1
         }
     ]
+}
+```
+
+### 4.2 Add Product to Order
+#### URL
+`localhost:8084/order/add`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique ID. |
+| `product_id`      | int   | required   | Product unique ID. |
+| `amount`      | int   | required   | Amount of product to want to purchase. |
+
+#### Body Example
+```
+{
+	"uuid": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+	"product_id": 2, 
+	"amount": 2
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+| `items`        | array   | List of item order. |
+
+#### Response Example
+```
+{
+    "status": "Add item successful",
+    "items": [
+        {
+            "product_id": 2,
+            "amount": 10
+        }
+    ]
+}
+```
+
+### 4.3 Add New User
+#### URL
+`localhost:8084/adduser`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique id. |
+
+#### Body Example
+```
+{
+	"uuid": "2d180ae0-ff11-4ea8-803c-94cb3da4d5b1"
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+
+#### Response Example
+```
+{
+    "status": "successful"
+}
+```
+
+### 4.4 Place User Order
+#### URL
+`localhost:8084/order/placeorder`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique id. |
+
+#### Body Example
+```
+{
+	"uuid": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+
+#### Response Example
+```
+{
+    "status": "Place order successful"
 }
 ```
