@@ -9,6 +9,8 @@ const port = process.argv.slice(2)[0] || 8084;
 const app = express();
 app.use(bodyParser.json());
 
+const userManagerService = 'http://localhost:8082';
+
 const orders = [{ user_uuid: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', items: [{ product_id: 1, amount: 1 }] }];
 
 app.get('/order', (req, res) => {
@@ -45,7 +47,7 @@ app.post('/order/add', (req, res) => {
 
         var item = order.items.find(item => item.product_id === req.body['product_id'])
 
-        if(item) {
+        if (item) {
             // if item already exist add number of amount instead of push new item to list
             item.amount = item.amount + req.body['amount'];
         } else {
@@ -83,8 +85,8 @@ app.post('/order/remove', (req, res) => {
         if (order) {
             for (var i = user.items.length - 1; i >= 0; i--) {
                 console.log(`loop ${i}`);
-                if (user.items[i].product_id === req.body['product_id']) { 
-                    user.items.splice(i, 1); 
+                if (user.items[i].product_id === req.body['product_id']) {
+                    user.items.splice(i, 1);
                     break;
                 }
             }
@@ -124,6 +126,80 @@ app.post('/order/remove', (req, res) => {
     }
 
 });
+
+app.post('/order/placeorder', (req, res) => {
+    // Place and paid the order => update user history
+
+    const order = orders.find(user => user.user_uuid === req.body['uuid']);
+
+    if (order) {
+
+        if (order.items.length != 0) {
+
+            axios.post(`${userManagerService}/history`, {
+                uuid: req.body['uuid'],
+                order: { "uuid": uuidv4(), "items": order.items}
+
+            }).catch(error => {
+                res.status(500).send({ status: 'error: something went wrong' });
+                console.log(error)
+            });
+
+            // clear order list
+            order.items = [];
+
+            const response = {
+                status: 'Place order successful'
+            }
+
+            res.status(202).send(response);
+            console.log(`[OrderManagement] Place order`.green);
+        } else {
+            const response = {
+                status: 'Order is empty'
+            }
+            res.status(406).send(response);
+            console.log(`[OrderManagement] Order is empty`.green);
+        }
+
+
+    } else {
+        const response = {
+            status: 'failure',
+            error: 'User not exist!'
+        }
+        res.status(406).send(response)
+        console.log(`[OrderManagement] user not found`.red);
+    }
+
+});
+
+app.post('/adduser', (req, res) => {
+    // add new user current order management
+
+    const user = orders.find(user => user.uuid === req.body['uuid']);
+
+    if (user) {
+        // user already exist
+        const response = {
+            status: 'error: user already exist',
+        }
+
+        res.status(500).send(response);
+        console.log(`[UserManager] User already exist`.red);
+    } else {
+        orders.push({
+            user_uuid: req.body['uuid'], items: []
+        });
+        const response = {
+            status: 'successful'
+        }
+        res.status(202).send(response)
+        console.log(`[UserManager] add new user current order management`.green);
+    }
+
+});
+
 
 
 
