@@ -1,7 +1,7 @@
 const colors = require('colors');
 const paymentMethod = require('../models/paymentMethod');
 
-const userProfiles = [
+const userProfileDatabase = [
     {
         uuid: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', name: 'Keanu Reeves', address: '9799 S. Beechwood Lane Manchester Township, NJ 08759', payment_method: 1,
         history: [{ uuid: '15a6ge2d-asfd-56dw-8b6d-ab8dfbbd4net', items: [{ product_id: 1, amount: 2 }], }, { uuid: 'asdfgh2d-asfd-56dw-8b6d-ab8dfb2346as', items: [{ product_id: 2, amount: 1 }, { product_id: 3, amount: 1 }], }]
@@ -9,13 +9,13 @@ const userProfiles = [
 ];
 
 function authenticateByUserUUID(uuid) {
-    const user = userProfiles.find(user => user.uuid === uuid);
+    const user = userProfileDatabase.find(user => user.uuid === uuid);
     if (user) return true;
     return false;
 }
 
 function getUserProfile(uuid) {
-    const user = userProfiles.find(user => user.uuid === uuid);
+    const user = userProfileDatabase.find(user => user.uuid === uuid);
     return {
         status: 'successful',
         name: user.name,
@@ -25,7 +25,7 @@ function getUserProfile(uuid) {
 }
 
 function updateUserProfile(uuid, body) {
-    const user = userProfiles.find(user => user.uuid === uuid);
+    const user = userProfileDatabase.find(user => user.uuid === uuid);
 
     for (let attribute in user) {
         if (body[attribute]) {
@@ -43,7 +43,7 @@ function updateUserProfile(uuid, body) {
 }
 
 function getUserHistory(uuid) {
-    const user = userProfiles.find(user => user.uuid === uuid);
+    const user = userProfileDatabase.find(user => user.uuid === uuid);
     return {
         status: 'successful',
         history: user.history
@@ -51,7 +51,7 @@ function getUserHistory(uuid) {
 }
 
 function addUserNewHistory(uuid, newHistory) {
-    const user = userProfiles.find(user => user.uuid === uuid);
+    const user = userProfileDatabase.find(user => user.uuid === uuid);
     user.history.push(newHistory);
 
     return {
@@ -61,7 +61,7 @@ function addUserNewHistory(uuid, newHistory) {
 }
 
 function addNewUser(uuid,name) {
-    userProfiles.push({
+    userProfileDatabase.push({
         uuid: uuid, name: name, address: '', payment_method: 0, 
         history: [],}
     );
