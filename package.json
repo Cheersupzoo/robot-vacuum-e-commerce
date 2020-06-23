@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "authentication": "node ./Authentication/authentication.js",
-    "usermanager": "node ./UserManager/usermanager.js",
-    "product": "node ./Product/product.js",
-    "ordermanager": "node ./OrderManagement/orderManagement.js",
+    "authentication": "node ./Authentication/index.js",
+    "usermanager": "node ./UserManager/index.js",
+    "product": "node ./Product/index.js",
+    "ordermanager": "node ./OrderManagement/index.js",
     "start": "concurrently \"npm run authentication\" \"npm run usermanager\" \"npm run product\" \"npm run ordermanager\""
   },
   "author": "Cheersupzoo",
