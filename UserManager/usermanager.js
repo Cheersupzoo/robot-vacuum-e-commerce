@@ -13,16 +13,18 @@ const auth = require('./middlewares/auth');
 
 app.use(bodyParser.json());
 
-// @route  /adduser
+// @route POST /adduser
 app.use(adduser);
 
 // middleware : check if uuid exist
 app.use(auth);
 // below 'route' will not run if req fail auth middleware
 
-// @route  /profile
+// @route GET /profile
+// @route POST /profile
 app.use(profile);
-// @route  /history
+// @route GET /history
+// @route POST /history
 app.use(history);
 
 console.log(`User Manager service listening on port ${port}`);

@@ -15,12 +15,17 @@ const auth = require('./middlewares/auth');
 
 app.use(bodyParser.json());
 
+// @route  POST /adduser
 app.use(adduser);
 
 // middleware : check if uuid exist
 app.use(auth);
 // below 'route' will not run if req fail auth middleware
 
+// @route  POST /order
+// @route  POST /order/add
+// @route  POST /order/remove
+// @route  POST /order/placeorder
 app.use('/order',orders);
 
 

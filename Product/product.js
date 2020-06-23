@@ -10,8 +10,8 @@ const product = require('./routes/product');
 
 app.use(bodyParser.json());
 
-// @route /product
-// @route /product/** 
+// @route GET /product
+// @route GET /product/** 
 app.use(product);
 
 // route for download image file
