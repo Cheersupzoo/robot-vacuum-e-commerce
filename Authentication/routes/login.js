@@ -7,9 +7,8 @@ router.post('/login', (req, res) => {
     const username = req.body['username'];
     const password = req.body['password']
 
+    // authenticate user and if success return uuid
     const uuid = users.getUserUUID(username, password);
-
-    console.log(uuid)
 
     if (uuid) {
         const response = {
