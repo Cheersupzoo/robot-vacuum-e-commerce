@@ -268,7 +268,65 @@ Content-Type: application/json
 }
 ```
 
-### 2.4 Add User profile
+### 2.4 Add New Purchases
+#### URL
+`localhost:8082/history`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique id. |
+| `order`      | Object   | required   | new placed order add to history. |
+
+#### Body Example
+```
+{
+	"uuid": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+	"order": { "uuid": "76a6ge2d-asfd-56dw-8b6d-ab8dfbbd4ne3", "items": [{"product_id":2,"amount":1}]}
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+| `history`        | List   | List of placed order. |
+
+#### Response Example
+```
+{
+    "status": "successful add new order",
+    "history": [
+        {
+            "uuid": "15a6ge2d-asfd-56dw-8b6d-ab8dfbbd4net",
+            "items": [
+                {
+                    "product_id": 1,
+                    "amount": 2
+                }
+            ]
+        },
+        {
+            "uuid": "76a6ge2d-asfd-56dw-8b6d-ab8dfbbd4ne3",
+            "items": [
+                {
+                    "product_id": 2,
+                    "amount": 1
+                }
+            ]
+        }
+    ]
+}
+```
+
+### 2.5 Add new User profile
 #### URL
 `localhost:8082/adduser`
 
@@ -539,5 +597,49 @@ Content-Type: application/json
 ```
 {
     "status": "Place order successful"
+}
+```
+
+### 4.5 Remove Product from Order
+#### URL
+`localhost:8084/order/remove`
+
+#### Header
+```
+POST
+Content-Type: application/json
+```
+
+#### Body Parameter
+| Parameter       | Type     | Required?  | Description                                     |
+| -------------   |----------|------------|-------------------------------------------------|
+| `uuid`      | string   | required   | User's unique ID. |
+| `product_id`      | int   | required   | Product unique ID. |
+
+#### Body Example
+```
+{
+	"uuid": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+	"product_id": 1
+}
+```
+
+#### Response Parameter
+
+| Parameter       | Type     | Description                                     |
+| -------------   |----------|-------------------------------------------------|
+| `status`        | string   | User creation successfulness. |
+| `items`        | array   | List of item order. |
+
+#### Response Example
+```
+{
+    "status": "Remove item successful",
+    "items": [
+        {
+            "product_id": 2,
+            "amount": 10
+        }
+    ]
 }
 ```
