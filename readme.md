@@ -37,6 +37,9 @@ npm start
 
 # Robot Vacuum E-Commerce API
 
+## Postman
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d78b1ab68fd3c10b9037)
+
 ## 1. Authentication API
 
 ### 1.1 Login
